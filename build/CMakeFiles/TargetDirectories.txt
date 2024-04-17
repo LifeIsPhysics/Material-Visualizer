@@ -1,3 +1,0 @@
-/home/berke/Documents/projects/Material-Visualizer/build/CMakeFiles/MaterialVisualizer.dir
-/home/berke/Documents/projects/Material-Visualizer/build/CMakeFiles/edit_cache.dir
-/home/berke/Documents/projects/Material-Visualizer/build/CMakeFiles/rebuild_cache.dir

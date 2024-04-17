@@ -1,0 +1,2 @@
+#define VERSION_MAJOR @MaterialVisualizer_VERSION_MAJOR@
+#define VERSION_MINOR @MaterialVisualizer_VERSION_MINOR@

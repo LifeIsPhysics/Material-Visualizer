@@ -34,11 +34,40 @@ void Lattice::print_info(){
     std::cout << "alpha, beta, gamma (Degree): " << _alpha << ", " << _beta << ", " << _gamma << '\n';
     
     std::cout << "\nVolume of conventional unit cell (Angstrom^3): " 
-        << _volume_conventional_cell << "\n\n";
+        << _volume_conventional_cell << "\n";
 
 }
 
-void Compound::parse_from(const json& j){
-    // TODO: Figure out how to traverse json object with this lib
-    //      and add _label
+void Compound::parse_from(const json& j, std::string filename){
+    _lattice.parse_from(j);
+    
+    // get name of json file by removing file extension.
+    size_t lastindex = filename.find_last_of("."); 
+    _name = filename.substr(0, lastindex); 
+
+    for(const auto& elem : j["sites"]){
+        Atom tmp;
+        elem["label"].get_to(tmp._label);
+        elem["xyz"].get_to(tmp._position);
+        _sites.push_back(tmp);
+    }
+}
+
+void Compound::print_info(){
+    
+    std::cout << "\nChemical compound: " << _name << '\n';
+    
+    _lattice.print_info();
+
+    std::cout << "\nIon, Position (Angstrom)\n";
+    for(const auto& site : _sites){
+        std::cout << site._label << ", ";
+        std::cout << "[";
+        for(const auto& elem : site._position){
+            std::cout << elem;
+            if(&elem != &(site._position[2])) std::cout << ", ";
+        }
+        std::cout << "]\n";
+    }
+    std::cout << '\n';
 }

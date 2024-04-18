@@ -19,7 +19,6 @@ int main(int argc, char** argv)
     std::ifstream file(argv[1]);
     
     json data;
-    
     try{
         data = json::parse(file);
     } 
@@ -28,9 +27,9 @@ int main(int argc, char** argv)
         return 1;
     }
     
-    Lattice lat;
-    lat.parse_from(data);
-    lat.print_info();
+    Compound comp;
+    comp.parse_from(data, argv[1]);
+    comp.print_info();
 
     return 0;
 }

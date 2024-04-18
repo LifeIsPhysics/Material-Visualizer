@@ -41,9 +41,11 @@ class Compound{
 private:
     std::vector<Atom> _sites;
     Lattice _lattice;
+    std::string _name;
 
 public:
-    void parse_from(const json& j);
+    void parse_from(const json& j, std::string filename);
+    void print_info();
 };
 
 #endif //PARSER_H

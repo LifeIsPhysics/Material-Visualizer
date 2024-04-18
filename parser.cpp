@@ -6,14 +6,14 @@
 // Volume [Angstrom^3]
 
 void Lattice::parse_from(const json& j){
-    j.at("lattice").at("matrix").get_to(_vectors);
-    j.at("lattice").at("a").get_to(_a);
-    j.at("lattice").at("b").get_to(_b);
-    j.at("lattice").at("c").get_to(_c);
-    j.at("lattice").at("alpha").get_to(_alpha);
-    j.at("lattice").at("beta").get_to(_beta);
-    j.at("lattice").at("gamma").get_to(_gamma);
-    j.at("lattice").at("volume").get_to(_volume_conventional_cell);
+    j["lattice"]["matrix"].get_to(_vectors);
+    j["lattice"]["a"].get_to(_a);
+    j["lattice"]["b"].get_to(_b);
+    j["lattice"]["c"].get_to(_c);
+    j["lattice"]["alpha"].get_to(_alpha);
+    j["lattice"]["beta"].get_to(_beta);
+    j["lattice"]["gamma"].get_to(_gamma);
+    j["lattice"]["volume"].get_to(_volume_conventional_cell);
 }
 
 void Lattice::print_info(){

@@ -1,9 +1,12 @@
 #include "configureFile.h"
 #include "parser.h"
-#include<nlohmann/json.hpp>
+#include "visualizer.h"
 
-#include<iostream>
-#include<fstream>
+#include <nlohmann/json.hpp>
+#include <raylib.h>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 
 using json = nlohmann::json;
@@ -29,7 +32,43 @@ int main(int argc, char** argv)
     
     Compound comp;
     comp.parse_from(data, argv[1]);
-    comp.print_info();
+    
+    const int screenWidth = 800;
+    const int screenHeight = 450;
+    const std::string window_title = "Material Visualizer " + std::to_string(VERSION_MAJOR) + "." 
+        + std::to_string(VERSION_MINOR);
+    
+    // Define the camera to look into our 3d world
+    Camera3D camera = { 0 };
+    camera.position = (Vector3){ 0.0f, 10.0f, 10.0f };  // Camera position
+    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
+    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                                // Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // Camera mode type
+
+    Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
+
+    InitWindow(screenWidth, screenHeight, window_title.c_str());
+    SetTargetFPS(60);
+
+    while(!WindowShouldClose()){
+        BeginDrawing();
+
+            BeginMode3D(camera);
+
+                DrawCompound(comp);
+                DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+
+                DrawGrid(10, 1.0f);
+
+            EndMode3D();
+
+            DrawFPS(10, 10);
+
+        EndDrawing();
+    }
+
+    CloseWindow();
 
     return 0;
 }

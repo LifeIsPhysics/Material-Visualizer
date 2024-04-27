@@ -13,11 +13,11 @@
 // Volume [Angstrom^3]
 
 using json = nlohmann::json; 
-using Matrix3d = std::array<std::array<double, 3>, 3>;
-using Vector3d = std::array<double, 3>;
-using Space = double;
-using Angle = double;
-using Volume = double;
+using Matrix3d = std::array<std::array<float, 3>, 3>;
+using Vector3d = std::array<float, 3>;
+using Space = float;
+using Angle = float;
+using Volume = float;
 using Elements = std::vector<std::string>;
 
 class Lattice{
@@ -38,7 +38,7 @@ struct Atom{
 };
 
 class Compound{
-private:
+public:
     std::vector<Atom> _sites;
     Lattice _lattice;
     std::string _name;

@@ -46,18 +46,19 @@ int main(int argc, char** argv)
     camera.fovy = 45.0f;                                // Camera field-of-view Y
     camera.projection = CAMERA_PERSPECTIVE;             // Camera mode type
 
-    Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
-
     InitWindow(screenWidth, screenHeight, window_title.c_str());
     SetTargetFPS(60);
 
     while(!WindowShouldClose()){
+        
+        UpdateCamera(&camera, CAMERA_ORBITAL);
+
         BeginDrawing();
+            ClearBackground(RAYWHITE);
 
             BeginMode3D(camera);
 
                 DrawCompound(comp);
-                DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
 
                 DrawGrid(10, 1.0f);
 

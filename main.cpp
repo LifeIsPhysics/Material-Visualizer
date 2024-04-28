@@ -64,7 +64,17 @@ int main(int argc, char** argv)
 
             EndMode3D();
 
-            DrawFPS(10, 10);
+            
+
+            //DrawText(comp._name.c_str(), 20, 20, 10, BLACK);
+            int xPos = 20;
+            int yPos = 20;
+            for(const auto& [label,atom] : comp._label_atoms_map){
+                DrawText(label.c_str(), xPos, yPos, 10, atom[0]._color);
+                yPos += 20;
+            }
+            DrawRectangle(10, 10, 80, yPos-10, Fade(LIGHTGRAY, 0.5f));
+            DrawRectangleLines( 10, 10, 80, yPos-10, GRAY);
 
         EndDrawing();
     }

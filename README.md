@@ -16,7 +16,7 @@ the crystal structure of chemical compounds is in that sense very important.
 ```
 
 # Example output
-Visualization of CoNb$_2$O$_6$
+Visualization of CoNb2O6:
 ![Visualization of CoNb2O6](figs/VisualizationCoNb2O6.gif)
 
 

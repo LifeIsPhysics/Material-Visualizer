@@ -6,6 +6,7 @@
 #include <raylib.h>
 #include <iostream>
 #include <fstream>
+#include <raymath.h>
 #include <string>
 
 
@@ -57,11 +58,8 @@ int main(int argc, char** argv)
             ClearBackground(RAYWHITE);
 
             BeginMode3D(camera);
-
+                DrawCubeWires(Vector3Zero(), comp._lattice._a, comp._lattice._b, comp._lattice._c, GRAY);
                 DrawCompound(comp);
-
-                DrawGrid(10, 1.0f);
-
             EndMode3D();
 
             

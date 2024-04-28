@@ -27,7 +27,7 @@ using Elements = std::vector<std::string>;
 
 
 class Lattice{
-private:
+public:
     Matrix3d _vectors;
     Space _a, _b, _c;
     Angle _alpha, _beta, _gamma;

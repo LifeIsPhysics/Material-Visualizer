@@ -1,4 +1,8 @@
 #include "parser.h"
+#include <raylib.h>
+
+std::vector<Color> colorVec {BROWN, LIME, GOLD, GRAY, SKYBLUE, 
+    PURPLE, VIOLET, BLUE, BLACK, RED};
 
 // Used units
 // Space  [Angstrom]
@@ -49,8 +53,22 @@ void Compound::parse_from(const json& j, std::string filename){
         Atom tmp;
         elem["label"].get_to(tmp._label);
         elem["xyz"].get_to(tmp._position);
+        _label_atoms_map[tmp._label].push_back(tmp); 
         _sites.push_back(tmp);
     }
+    
+    // Set color of atoms. Atoms with different labels get unique colors.
+    for(auto& [_, atoms] : _label_atoms_map){
+        Color color = colorVec.back();
+        colorVec.pop_back();
+        for(auto& atom : atoms){
+            atom._color.r = color.r;
+            atom._color.g = color.g;
+            atom._color.b = color.b;
+            atom._color.a = color.a;
+        }
+    }
+
 }
 
 void Compound::print_info(){
@@ -71,3 +89,20 @@ void Compound::print_info(){
     }
     std::cout << '\n';
 }
+
+
+
+/*void Compound::setColors(std::map<std::string, std::vector<Atom>> map){
+    // Set color of each atom. Each label gets unique color
+    for(auto& [_, atoms] : map){
+        Color color = RED; //(Color) {(unsigned char) GetRandomValue(0, 255), 
+                           //    (unsigned char) GetRandomValue(0, 255),
+                            //   (unsigned char) GetRandomValue(0, 255), 255};
+        for(auto& atom : atoms){
+            atom._color.r = color.r;
+            atom._color.g = color.g;
+            atom._color.b = color.b;
+            atom._color.a = color.a;
+        }
+    }
+}*/

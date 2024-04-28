@@ -14,7 +14,7 @@ find_package(raylib REQUIRED)
 
 configure_file(configureFile.h.in configureFile.h)
 
-add_executable("${PROJECT_NAME}" main.cpp parser.cpp)
+add_executable("${PROJECT_NAME}" main.cpp parser.cpp visualizer.cpp)
 
 target_link_libraries("${PROJECT_NAME}" PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries("${PROJECT_NAME}" PRIVATE raylib)

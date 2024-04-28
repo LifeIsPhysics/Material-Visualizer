@@ -68,7 +68,7 @@ int main(int argc, char** argv)
 
         EndDrawing();
     }
-
+    
     CloseWindow();
 
     return 0;
